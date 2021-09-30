@@ -1,7 +1,7 @@
-const { DataTypes } = require("sequelize/types")
+
 
 module.exports = (sequelize, DataTypes) => {
-    const alias = "Movie"
+    const alias = "Movies"
 
     const cols = {
 
@@ -34,11 +34,12 @@ module.exports = (sequelize, DataTypes) => {
     const config = {
         underscored: true,
         timestamps: false,
-        tableName: "moives",
+        tableName: "movies",
         
     }
 
-    const Movie = sequelize.define(alias, cols, config );
+    const Pelicula = sequelize.define(alias, cols, config );
 
-    return Movie;
+
+    return Pelicula;
 }
