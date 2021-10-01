@@ -44,6 +44,14 @@ module.exports = (sequelize, DataTypes) => {
         Pelicula.belongsTo(models.Genres, {
           as: 'genre',
           foreingKey: 'genre_id'  
+        });
+
+        Pelicula.belongsToMany(models.Actors, {
+            as: 'actors',
+            through: 'actor_movie',
+            foreignKey: 'movie_id', // fk de movie dentro de la tabla pivote
+            otherKey: 'actor_id',
+            timestamps: false, // tabla pivot
         })
     }
 

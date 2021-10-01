@@ -6,7 +6,12 @@ const moviesController = {
         db.Movies.findByPk(id, {
             include: [{
                 association: 'genre',
-            }]
+            },
+            {
+                association: "actors"
+            }
+
+        ]
         })
         .then(function(movie) {
             res.render("moviesDetail", { movie })
