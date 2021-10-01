@@ -2,7 +2,12 @@ const db = require ('../database/models');
 
 const moviesController = {
     detail: (req,res) => {
-        db.Movies.findByPk(req.params.id)
+        const { id } = req.params
+        db.Movies.findByPk(id, {
+            include: [{
+                association: 'genre',
+            }]
+        })
         .then(function(movie) {
             res.render("moviesDetail", { movie })
         })

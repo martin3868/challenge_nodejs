@@ -34,11 +34,19 @@ module.exports = (sequelize, DataTypes) => {
     const config = {
         underscored: true,
         timestamps: false,
-        tableName: "movies",
+        
         
     }
 
     const Pelicula = sequelize.define(alias, cols, config );
+
+    Pelicula.associate = models => {
+        Pelicula.belongsTo(models.Genres, {
+          as: 'genre',
+          foreingKey: 'genre_id'  
+        })
+    }
+
 
 
     return Pelicula;
