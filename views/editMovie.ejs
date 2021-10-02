@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Películas</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+</head>
+<body>
+    <h1>CREA TU PELÍCULA</h1>
+
+    <figure>
+        <img src="/images/logo-DH.png" alt="Logo Digital House">
+    </figure>
+
+    <form action="/movies/edit/<%=movie.id%>" method="POST">
+        <div>
+            <label for="">Titulo</label>
+            <input type="text" name="title" value="<%=movie.title%>">
+        </div>
+        <div>
+            <label for="">Rating</label>
+            <input type="text" name="rating" value="<%=movie.rating%>">
+        </div>
+        <div>
+            <label for="">Premios</label>
+            <input type="text" name="awards" value="<%=movie.awards%>">
+        </div>
+        <div>
+            <label for="">Duracion</label>
+            <input type="text" name="length" value="<%=movie.length%>">
+        </div>
+        <div>
+            <label for="">Estreno</label>
+            <input type="date" name="release_date">
+        </div>
+        <div>
+            <label for="">Genero</label>
+            <select name = "genre">
+                <% for (let i = 0; i < genres.length; i++) { %>
+
+                    <% if (genres[i].id == movie.genre_id) {%>
+                        <option value="<%=genres[i].id%>" selected>
+                            <%=genres [i].name%>
+    
+                        </option>
+                    <% } else { %>
+                        <option value="<%=genres[i].id%>">
+                            <%=genres [i].name%>
+    
+                        </option>
+                    <% } %>
+                   
+                <% } %>
+            </select>
+        </div>
+        <button type="submit">EDITAR</button>
+    
+    
+    
+    
+    
+    </form>
+
+
+
+</body>
+
+
+</html>
