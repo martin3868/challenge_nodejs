@@ -17,25 +17,28 @@ const validationNewUser = [
         .withMessage('Por favor ingrese su email')
         .bail()
         .isEmail()
-        .withMessage('Ingrese un mail valido'),
-    // .bail()
-    // .custom(async (value, { req }) => {
-    //     const { email } = req.body
-    //     const userFound = await db.Users.findOne({
-    //         where: {
-    //             email
-    //         }
-    //     })
+        .withMessage('Ingrese un mail valido')
+        .bail()
+        .custom(async (value, { req }) => {
+            const { email } = req.body
+            const userFound = await db.Users.findOne ({
+                where: {
+                    email
+                }
+            })
 
-    //     if (userFound) {
-    //         return Promise.reject('El mail ya esta en uso')
-    //     }
+            if (userFound) {
+                return Promise.reject('El mail ya esta en uso')
+            }
 
-    //         return true
-    // }),
+                return true
+        }),
+     
+         
     body('password')
         .notEmpty()
-        .withMessage('Por favor ingrese su contraseña'),
+        .withMessage('Por favor ingrese su contraseña')
+        
 
 ]
 
