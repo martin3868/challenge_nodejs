@@ -1,6 +1,7 @@
    const { validationResult } = require('express-validator');
    const bcrypt = require('bcryptjs')
-   const db = require("../database/models")
+   const db = require("../database/models");
+const router = require('../routes');
    
    
    const usersController = {
@@ -36,7 +37,7 @@
                 }) 
         },
         login: (req, res) => {
-            res.render('usersLogin')
+            res.render('user/usersLogin')
 
         },
         processLogin: (req, res) => {
@@ -44,10 +45,10 @@
         const oldValues = req.body
 
         if (!formValidation.isEmpty()) {
-            return res.render('usersLogin', { oldValues, errors: formValidation.mapped() })
+            return res.render('user/usersLogin', { oldValues, errors: formValidation.mapped() })
         }
         // lo que viene del login
-        const { email,remember } = req.body
+        const { email } = req.body
         // le pedimos al modelo el usuario
         //const user = usersModels.findByField('email', email)
         db.Users.findOne({
@@ -63,7 +64,7 @@
 
             // cargamos dentro de la sesión la propieda logged con el usuario (menos el password)
             req.session.logged = user
-            return res.json(req.session.logged)
+           
             // guardamos un dato de nuestro usuario en la sesión (email, user_id)
             // if (remember) {
             //     // clave
@@ -73,9 +74,12 @@
             //         signed: true,
             //     })
             // }
-            // // redirigimos al profile
-            // res.redirect('/')
+            //redirigimos al profile
+            res.redirect('/users/profile')
         })
+    },
+    profile: (req, res) => {
+        res.render ('user/profile')
     }
 
 

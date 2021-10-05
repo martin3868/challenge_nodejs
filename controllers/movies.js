@@ -14,13 +14,13 @@ const moviesController = {
         ]
         })
         .then(function(movie) {
-            res.render("moviesDetail", { movie })
+            res.render("movie/moviesDetail", { movie })
         })
     },
     new: (req, res) => {
         db.Genres.findAll()
             .then(function(genres) {
-                 res.render("newMovie", { genres })
+                 res.render("movie/newMovie", { genres })
             })
 
     },
@@ -48,7 +48,7 @@ const moviesController = {
         const genres = await db.Genres.findAll()
         const actors = await db.Actors.findAll ()
 
-        res.render ('editMovie', {
+        res.render ('movie/editMovie', {
             movie,
             genres,
             actors
