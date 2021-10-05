@@ -25,23 +25,26 @@
             <input type="text" name="email"  class="<%= (locals.errors && errors.email) ? 'input-error' : '' %>" />
             <span class='msg-error msg-error-email'></span>>
         </div>
+
         <div>
             <label for="">Contraseña</label>
             <input type="password" name="password" class="<%= (locals.errors && errors.name) ? 'input-error' : '' %>" />
-
             <span class='msg-error msg-error-password'></span> >
+        </div>
        
 
-    <div>
+        <div>
 
-        <button type="submit">INGRESAR</button>
+                <input type="checkbox" name="remember" id="remember" value="yes" <%= (locals.oldValues && oldValues.remember === 'yes') ? 'checked' : '' %>/> Recordar usuario
 
-    </div>
-        
+        </div>
     
-    
-    
-    
+        <div>
+
+                <button type="submit">INGRESAR</button>
+
+        </div>
+                
     </form>
 
 

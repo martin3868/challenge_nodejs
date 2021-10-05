@@ -1,7 +1,7 @@
    const { validationResult } = require('express-validator');
    const bcrypt = require('bcryptjs')
    const db = require("../database/models");
-const router = require('../routes');
+   const { maxAgeUserCookie } = require ("../config/config")
    
    
    const usersController = {
@@ -48,7 +48,7 @@ const router = require('../routes');
             return res.render('user/usersLogin', { oldValues, errors: formValidation.mapped() })
         }
         // lo que viene del login
-        const { email } = req.body
+        const { email, remember } = req.body
         // le pedimos al modelo el usuario
         //const user = usersModels.findByField('email', email)
         db.Users.findOne({
@@ -66,14 +66,14 @@ const router = require('../routes');
             req.session.logged = user
            
             // guardamos un dato de nuestro usuario en la sesión (email, user_id)
-            // if (remember) {
+            if (remember) {
             //     // clave
-            //     res.cookie('user', user.id, {
-            //         maxAge: maxAgeUserCookie,
+                 res.cookie('user', user.id, {
+                   maxAge: maxAgeUserCookie,
             //         // pasamos esta propiedad para que firme la cookie
-            //         signed: true,
-            //     })
-            // }
+                 //  signed: true,
+                })
+             }
             //redirigimos al profile
             res.redirect('/users/profile')
         })
@@ -81,6 +81,7 @@ const router = require('../routes');
     logout: (req, res) => {
         // borrar session y cookie
         req.session.destroy()
+        res.clearCookie('user')
         res.redirect('/users/login')
     },
     profile: (req, res) => {
