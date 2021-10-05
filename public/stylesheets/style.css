@@ -17,3 +17,11 @@ img{
 figure{
   width: 20%;
 }
+
+.msg-error{
+  color: rgb(40, 6, 165);
+}
+
+.input-error{
+  border: 2px solid red;
+}

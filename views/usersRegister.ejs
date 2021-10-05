@@ -18,16 +18,24 @@
     <form action="/users/register" method="POST">
         <div>
             <label for="">Nombre</label>
-            <input type="text" name="name">
+            <input type="text" name="name" class="<%= (locals.errors && errors.name) ? 'input-error' : '' %>" value= "<%= locals.oldValues ? oldValues.name : null %>" >
+            <p class="msg-error"><%= locals.errors && errors.name ? errors.name.msg : "" %></p>
+        
+        
         </div>
+        <br>
         
         <div>
             <label for="">Email</label>
-            <input type="text" name="email">
+            <input type="text" name="email" class ="<% (locals.errors && errors.email) ? 'input-error' : '' %>" value= "<%= locals.oldValues ? oldValues.email : null %>">
+            <p class="msg-error"><%= locals.errors && errors.email ? errors.email.msg : "" %></p>
         </div>
+        <br>
+
          <div>
-            <label for="">Contraseña</label>
-            <input type="password" name="password">
+            <label for="">Contraseña</label>            
+            <input type="password" name="password" class = "<% (locals.errors && errors.password) ? 'input-error' : '' %>" value= "<%= locals.oldValues ? oldValues.password : null %>">
+            <p class="msg-error"><%= locals.errors && errors.password ? errors.password.msg : "" %></p>
         </div>
       
         <br>
