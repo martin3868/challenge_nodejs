@@ -25,3 +25,40 @@ figure{
 .input-error{
   border: 2px solid red;
 }
+
+.input-container 
+{
+    width: 90%;
+    margin: auto;
+    max-width: 400px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    text-align:initial;
+}
+.input-container label {
+  display: block;
+}
+
+.input-container .boton
+  {
+    transition: all 1s;
+  }
+  .input-container .boton:hover
+  {
+    background-color: rgb(11,64,145);
+    color:white;
+  }
+  .input-container  .recuperar
+  {
+    margin-top: 10px;
+  }
+  .input-container  .recuperar a
+  {
+    color:rgb(150, 42, 42);
+    text-decoration: none;
+    transition: all 1s;
+  }
+  .input-container  .recuperar a:hover
+  {
+    color:rgb(41, 128, 0);
+  }

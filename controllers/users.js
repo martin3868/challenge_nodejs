@@ -40,9 +40,46 @@
 
         },
         processLogin: (req, res) => {
+            const formValidation = validationResult(req)
+        const oldValues = req.body
 
-
+        if (!formValidation.isEmpty()) {
+            return res.render('usersLogin', { oldValues, errors: formValidation.mapped() })
         }
+        // lo que viene del login
+        const { email,remember } = req.body
+        // le pedimos al modelo el usuario
+        //const user = usersModels.findByField('email', email)
+        db.Users.findOne({
+            where: {
+                email
+            }
+        })
+        .then((user) => {
+            //req.session = {}
+            // cargamos los datos del usuario en la sesión
+            // le sacamos el password
+            delete user.password
+
+            // cargamos dentro de la sesión la propieda logged con el usuario (menos el password)
+            req.session.logged = user
+            return res.json(req.session.logged)
+            // guardamos un dato de nuestro usuario en la sesión (email, user_id)
+            // if (remember) {
+            //     // clave
+            //     res.cookie('user', user.id, {
+            //         maxAge: maxAgeUserCookie,
+            //         // pasamos esta propiedad para que firme la cookie
+            //         signed: true,
+            //     })
+            // }
+            // // redirigimos al profile
+            // res.redirect('/')
+        })
+    }
+
+
+        
     }
 
     module.exports = usersController
