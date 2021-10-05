@@ -78,6 +78,11 @@ const router = require('../routes');
             res.redirect('/users/profile')
         })
     },
+    logout: (req, res) => {
+        // borrar session y cookie
+        req.session.destroy()
+        res.redirect('/users/login')
+    },
     profile: (req, res) => {
         res.render ('user/profile')
     }
