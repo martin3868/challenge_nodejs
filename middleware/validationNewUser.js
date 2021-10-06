@@ -1,6 +1,6 @@
 const { body } = require ('express-validator');
 const db = require('../database/models');
-
+const { isFileImage } = require('../helpers/file');
 
 const validationNewUser = [
 
@@ -37,9 +37,38 @@ const validationNewUser = [
          
     body('password')
         .notEmpty()
-        .withMessage('Por favor ingrese su contraseña')
+        .withMessage('Por favor ingrese su contraseña'),
         
 
+    body('image')
+        .custom((value, { req }) => {
+            const { file } = req
+
+            // chequea que haya cargado imagen
+            if (!file) {
+                // esto es como si hicieramos .withMessage('Seleccione un archivo')
+                throw new Error('Por favor ingrese una imagen')
+            }
+            /*if (!isFileImage(file.originalname)) {
+                // disparar error
+                throw new Error('Por favor ingrese una archivo que sea una imagen')
+            }
+            chequea que la extensión sea la correcta
+            const avalaible_extensions = [".jpg", ".jpeg", ".gif", "png"];
+            const extension = path.extname(file.originalname);
+            if(avalaible_extensions.includes(extension)){
+                throw new Error('Por favor ingrese una archivo que sea una imagen');
+            };
+            return true;*/
+            if (!isFileImage(file.originalname)) {
+                // disparar error
+                throw new Error('Por favor ingrese una archivo que sea una imagen')
+            }
+
+            // chequea que la extensión sea la correcta
+
+            return true;
+        })    
 ]
 
 module.exports = validationNewUser;

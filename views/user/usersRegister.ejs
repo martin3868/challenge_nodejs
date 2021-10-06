@@ -18,7 +18,7 @@
         <img src="/images/logo-DH.png" alt="Logo Digital House">
     </figure>
 
-    <form action="/users/register" method="POST">
+    <form action="/users/register" method="POST" enctype="multipart/form-data">
         <div>
             <label for="">Nombre</label>
             <input type="text" name="name" class="<%= (locals.errors && errors.name) ? 'input-error' : '' %>" value= "<%= locals.oldValues ? oldValues.name : null %>" >
@@ -39,6 +39,15 @@
             <label for="">Contraseña</label>            
             <input type="password" name="password" class = "<% (locals.errors && errors.password) ? 'input-error' : '' %>" value= "<%= locals.oldValues ? oldValues.password : null %>">
             <p class="msg-error"><%= locals.errors && errors.password ? errors.password.msg : "" %></p>
+        </div>
+        <br>
+        <div>
+            <label for="image">Imágen</label>
+            <input type="file" name="image" id="image" />
+            <span class='msg-error msg-error-image'></span>
+            <% if (locals.errors && errors.image) { %>
+                <p class='msg-error'><%=errors.image.msg %></p>
+                <% } %>
         </div>
       
         <br>

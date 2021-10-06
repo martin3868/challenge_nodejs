@@ -15,11 +15,19 @@
             //si encuentro un error devuelvo el formulario con los valores ya cargados y los errores.
 
             if (!formValidation.isEmpty()) {
+               // borrar imagen
+            if (req.file) {
+                // primero chequeamos que exista
+                fs.unlinkSync(req.file.path)
+            }
+               
                 res.render('user/usersRegister', { oldValues: req.body, errors: formValidation.mapped() })
             }
 
             //crear el objeto usuario
-            const { name,  email, password} = req.body;     
+            const { name,  email, password} = req.body;   
+            const { file } = req
+            const image = file.filename  
 
             //hashear el password
            const hashPassword = bcrypt.hashSync(password)
@@ -27,7 +35,8 @@
             const user = {
                 name: name,
                 email: email,
-                password: hashPassword
+                password: hashPassword,
+                image: "/images/imgUser/" + image,
                 
             }
 
