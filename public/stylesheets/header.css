@@ -1,0 +1,16 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #292929;
+    font-family: 'calibri';
+}
+
+.menu {
+    width: 900px;
+    margin: 0 auto;
+}
+
