@@ -31,21 +31,13 @@
         </ul>           
     </p>
     <br>
+    <%- include('../partials/crud2') %>
     
-    <a href="/movies/edit/<%=movie.id%>">
-    <button> EDITAR </button>
-
-    </a>
-   
-    <form action="/movies/delete/<%=movie.id%>" method="POST">
-    <button type="submit">BORRAR</button>
-    </form>
-
     <br>
     <br>
     <a href="/">
         <button> VOLVER </button>
-        </a>
+    </a>
     
        
 </body>

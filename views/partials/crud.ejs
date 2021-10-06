@@ -1,0 +1,9 @@
+<div >
+    <ul>
+        <% if (locals.logged) { %>
+        <%- include('crud-auth') %>
+        <% } else {%>
+        <%- include('crud-guest') %>
+    <% }%>
+    </ul>
+</div>

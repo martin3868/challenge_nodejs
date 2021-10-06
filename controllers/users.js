@@ -6,7 +6,7 @@
    
    const usersController = {
         register: (req, res) => {
-            res.render('usersRegister')
+            res.render('user/usersRegister')
         },
 
         processRegister: (req, res) => {                                    
@@ -15,7 +15,7 @@
             //si encuentro un error devuelvo el formulario con los valores ya cargados y los errores.
 
             if (!formValidation.isEmpty()) {
-                res.render('usersRegister', { oldValues: req.body, errors: formValidation.mapped() })
+                res.render('user/usersRegister', { oldValues: req.body, errors: formValidation.mapped() })
             }
 
             //crear el objeto usuario
@@ -82,7 +82,7 @@
         // borrar session y cookie
         req.session.destroy()
         res.clearCookie('user')
-        res.redirect('/users/login')
+        res.redirect('/')
     },
     profile: (req, res) => {
         res.render ('user/profile')
